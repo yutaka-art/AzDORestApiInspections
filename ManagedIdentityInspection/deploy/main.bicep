@@ -106,11 +106,17 @@ resource functionApp 'Microsoft.Web/sites@2021-03-01' = {
         }
         {
           name: 'ManagedIdentityClientId'
-          value: '*'
+          value: managedId.properties.clientId
         }
       ]
       ftpsState: 'FtpsOnly'
       minTlsVersion: '1.2'
+      cors: {
+        allowedOrigins: [
+          'https://portal.azure.com'
+        ]
+        supportCredentials: true
+      }
     }
     httpsOnly: true
   }
