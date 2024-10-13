@@ -3,29 +3,20 @@ using Azure.Identity;
 using ManagedIdentityInspection.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
 using Microsoft.VisualStudio.Services.Client;
 using Microsoft.VisualStudio.Services.WebApi;
 using Microsoft.VisualStudio.Services.WebApi.Patch.Json;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net.Http.Headers;
-using System.Threading;
-using System.Threading.Tasks;
 using JsonPatchDocument = Microsoft.VisualStudio.Services.WebApi.Patch.Json.JsonPatchDocument;
 
 namespace ManagedIdentityInspection
 {
-    /// <summary>
-    /// ManagedIdentityInspection 検証クラス
-    /// </summary>
-    public static class Reporting
+    public class Reporting
     {
+        private readonly ILogger<Reporting> _logger;
         /// <summary>OrganizationUrl</summary>
         public static readonly string OrgUrl = $"https://dev.azure.com/{Environment.GetEnvironmentVariable("AzureDevOpsOrg")}";
 
@@ -39,23 +30,23 @@ namespace ManagedIdentityInspection
         /// <summary>Azure DevOps のサービスプリンシパル認証の際に必要なスコープを示す固定の文字列</summary>
         public const string AzureDevOpsAppScope = "499b84ac-1321-427f-aa17-267ca6975798/.default";
 
-        /// <summary>
-        /// Sample Functions
-        /// </summary>
-        /// <param name="req"></param>
-        /// <param name="log"></param>
-        /// <returns></returns>
-        [FunctionName("Reporting")]
-        public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
-            ILogger log)
+        public Reporting(ILogger<Reporting> logger)
         {
-            // Start Log
-            log.LogInformation("C# HTTP trigger function processed a request.");
+            _logger = logger;
+        }
+
+        [Function("Reporting")]
+        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req)
+        {
+            _logger.LogInformation("C# HTTP trigger function processed a request.");
 
             // リクエストボディよりパラメータを取得
             var requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            var receiveModel = JsonConvert.DeserializeObject<ReceiveModel>(requestBody);
+            //var receiveModel = JsonConvert.DeserializeObject<ReceiveModel>(requestBody);
+
+            var receiveModel = new ReceiveModel();
+            receiveModel.title = "osatest-20241014_01";
+            receiveModel.project = "Realis_Fleuze";
 
             // ManagedIdentityのTenantId,ManagedIdentityClientIdを利用しアクセストークンを取得
             var credentials = new DefaultAzureCredential(
@@ -99,9 +90,11 @@ namespace ManagedIdentityInspection
             }
             catch (Exception ex)
             {
-                log.LogError(ex, ex.ToString());
+                _logger.LogError(ex, ex.ToString());
                 throw;
             }
+
+            //return new OkObjectResult("Welcome to Azure Functions!");
         }
     }
 }

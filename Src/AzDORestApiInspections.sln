@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ソリューション項目
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServicePrincipalCertificateInspection", "ServicePrincipalCertificateInspection\ServicePrincipalCertificateInspection.csproj", "{4E978534-A8B9-454F-BD37-B3F3F9ECDDF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagedIdentityInspection", "ManagedIdentityInspection\ManagedIdentityInspection.csproj", "{5543D586-AFEA-4874-BBA1-0761ACB6AB5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagedIdentityInspection", "ManagedIdentityInspection\ManagedIdentityInspection.csproj", "{2CBC2958-E59A-4FA0-811F-0C7B113B5F31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,10 +34,10 @@ Global
 		{4E978534-A8B9-454F-BD37-B3F3F9ECDDF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E978534-A8B9-454F-BD37-B3F3F9ECDDF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E978534-A8B9-454F-BD37-B3F3F9ECDDF8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5543D586-AFEA-4874-BBA1-0761ACB6AB5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5543D586-AFEA-4874-BBA1-0761ACB6AB5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5543D586-AFEA-4874-BBA1-0761ACB6AB5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5543D586-AFEA-4874-BBA1-0761ACB6AB5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CBC2958-E59A-4FA0-811F-0C7B113B5F31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CBC2958-E59A-4FA0-811F-0C7B113B5F31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CBC2958-E59A-4FA0-811F-0C7B113B5F31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CBC2958-E59A-4FA0-811F-0C7B113B5F31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

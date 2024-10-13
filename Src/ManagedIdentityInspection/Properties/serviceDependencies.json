@@ -1,8 +1,7 @@
 {
   "dependencies": {
     "appInsights1": {
-      "type": "appInsights",
-      "connectionId": "APPINSIGHTS_INSTRUMENTATIONKEY"
+      "type": "appInsights"
     },
     "storage1": {
       "type": "storage",
